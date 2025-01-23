@@ -15,7 +15,7 @@ function App() {
         const res = await axios.get(url);
         console.log(res);
         setExchangeRate(res.rate.toCurrency);
-        setResult(exchangeRate)
+        setResult()
       }catch(error){
         console.error("error fetching exchange rate:",error);
   }}
