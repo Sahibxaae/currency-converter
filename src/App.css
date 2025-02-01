@@ -16,11 +16,10 @@ body{
     margin-top: 50px;
     background-color: #fff;
     width: 350px;
-    height: 450px;
+    height: 500px;
     align-items: center;
     justify-content: center;
     border-radius: 6px;
-    
 }
 .box{
     width: 100%;
@@ -46,4 +45,18 @@ body{
     height:35px;
     border-radius: 5px;
     outline: none;
+}
+.convert input{
+    width: 80%;
+    height: 30px;
+}
+.result{
+    border: 2px solid #107dfa;
+    width: 90%;
+    height: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #107dfa;
+    border-radius: 5px;
 }

@@ -57,7 +57,9 @@ function App() {
             <option value="AFN">AFN - Afghanistan afghani</option> 
             <option value="EUR">EUR - European Euro</option>  
           </select>
+          <div className='result'>
           <p>{amount} {fromCurrency} is equal to {result} {toCurrency} </p>
+          </div>
         </div>
       </div>
     </div>
