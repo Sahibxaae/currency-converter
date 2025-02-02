@@ -4,7 +4,7 @@ import axios from "axios";
 function App() {
   const [fromCurrency, setFromCurrency] = useState('INR');
   const [toCurrency, setToCurrency] = useState('USD');
-  const [amount,setAmount] = useState();
+  const [amount,setAmount] = useState(1);
   const [result,setResult] = useState();
   const [exchangeRate , setExchangeRate] = useState();
 
@@ -13,18 +13,19 @@ function App() {
       try{
         let url = `https://api.exchangerate-api.com/v4/latest/${fromCurrency}`;
         const res = await axios.get(url);
-        console.log(res);
+        // console.log(res);
         setExchangeRate(res.data.rates[toCurrency]);
-        if (amount && exchangeRate) {
-          setResult((amount * exchangeRate).toFixed(2));
-          console.log(result);
-        }
-        
       }catch(error){
         console.error("error fetching exchange rate:",error);
   }}
   getExchangeRate();
 },[fromCurrency,toCurrency]);
+useEffect(() => {
+  if (exchangeRate) {
+    setResult((amount * exchangeRate).toFixed(2));
+  }
+}, [amount, exchangeRate]);
+
   const handleAmountChange = (e) =>{
     setAmount(parseFloat(e.target.value));
   }
@@ -40,10 +41,11 @@ function App() {
         <div className="box">Currency converter</div>
         <div className="convert">
           <label htmlFor="amt">Amount</label>
-          <input type="number" id='amt' onChange={handleAmountChange}/>
+          <input type="number" id='amt' onChange={handleAmountChange} value={amount}/>
           <label htmlFor="from">Currency</label>
           <select id="from" onChange={handleFromCurrency}>
             <option value="INR">INR - Indian Rupees</option> 
+            <option value="USD">USD - United States dollar</option>
             <option value="AED">AED - United arab emirates dinar</option> 
             <option value="AFN">AFN - Afghanistan afghani</option> 
             <option value="EUR">EUR - European Euro</option> 
